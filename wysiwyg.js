@@ -53,3 +53,13 @@ let famousPerson = [
     },
 ]
 
+for (let i=0; i < famousPerson.length; i++) {
+    output.innerHTML += 
+    `<div class="famousPersonClass">
+    <strong>Person</strong>:
+    <header>${famousPerson[i].name}: ${famousPerson[i].profession}</header>
+    <section>Biography: ${famousPerson[i].bio} <div><img src=${famousPerson[i].image}></div></section>
+    <footer>Birth:${famousPerson[i].lifespan.birth}<br>Death:${famousPerson[i].lifespan.death}</footer>
+    <br>
+    </div>`
+};
