@@ -53,28 +53,75 @@ let famousPerson = [
     },
 ]
 
+// putting {i} inside of new id of section in string temperate literal allows us to give each section a unique id
 for (let i=0; i < famousPerson.length; i++) {
     output.innerHTML += 
     `<div class="famousPersonClass">
     <strong>Person</strong>:
     <header>${famousPerson[i].name}: ${famousPerson[i].profession}</header>
-    <section>Biography: ${famousPerson[i].bio} <div><img src=${famousPerson[i].image}></div></section>
+    <section class="classSection" id="section${i}">Biography: ${famousPerson[i].bio}</section> 
+    <div><img src=${famousPerson[i].image}></div>
     <footer>Birth:${famousPerson[i].lifespan.birth}<br>Death:${famousPerson[i].lifespan.death}</footer>
     <br>
     </div>`
 };
 
 let famousPersonCard = document.getElementsByClassName("famousPersonClass");
+let userInput = document.getElementById("userText")
+let borderOnDom;
+
+
 for (let i=0; i < famousPersonCard.length; i++) {
-    famousPersonCard[i].addEventListener("click", function() {
-        event.target.style.border = "dotted";
+    famousPersonCard[i].addEventListener("click", function(event) {
+        if (borderOnDom !== undefined) { //bc this means really that if its been defined, follow this sequence of instrunctions.
+            borderOnDom.removeAttribute("style");
+        }
+        borderOnDom = event.currentTarget;
+        console.log(borderOnDom.children);
+        console.log(borderOnDom.children[2]);
+        borderOnDom.style.border = "dotted";
+        userInput.focus();
+        console.log(event);
+        // let writeToSection = borderOnDom;
     })
 }
+// NOT USING THIS BUT COO TO KNOW//////////////////
+let writeToSection = document.getElementById("section0")
+console.log(writeToSection);
+//this is a way to target a specific thing that you've dynamically given an id, like in the example, kevin durants id.
+/////////////////////////////////
 
-//ANOTHER WAY TO DO 
+userInput.addEventListener("input", function() {
+    borderOnDom.children[2].innerHTML = `Biography: ` + userInput.value; //use borderOnDom bc it is the current target (meaning it's the parent that the event listener is on), then accessing its second child(which through developer tools we were able to find that's where the bio is), and writing the user text to that specific element.
+    console.log("is this working");
+});
+
+function clearUserText() {
+    userInput.value = "";
+}
+
+userText.addEventListener('keypress', function (e) {
+var key = e.keyCode;
+if (key === 13) {
+    console.log("enter key working");
+    clearUserText();
+}
+});
+
+
+
+// let writeToSection = document.getElementsByTagName("section");
+// let mirrorTyping = (event) => {
+//     console.log("mirror is working");
+//     userInput.addEventListener("input", () => writeToSection.innerHTML = userInput.value)
+// ;}
+
+
+// ANOTHER WAY TO DO 
 // let famousPersonCard = document.querySelectorAll("famousPersonClass");
 // for (let i=0; i < famousPersonCard.length; i++) {
-//     famousPersonCard[i].addEventListener("click", function(event) {
-//         event.currentTarget.classList.add("dotted");
+//     famousPersonCard[i].addEventListener("click", function() {
+//         event.currentTarget.classList.add("border");
+//         console.log("hi")
 //     })
 // }
