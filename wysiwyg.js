@@ -63,3 +63,18 @@ for (let i=0; i < famousPerson.length; i++) {
     <br>
     </div>`
 };
+
+let famousPersonCard = document.getElementsByClassName("famousPersonClass");
+for (let i=0; i < famousPersonCard.length; i++) {
+    famousPersonCard[i].addEventListener("click", function() {
+        event.target.style.border = "dotted";
+    })
+}
+
+//ANOTHER WAY TO DO 
+// let famousPersonCard = document.querySelectorAll("famousPersonClass");
+// for (let i=0; i < famousPersonCard.length; i++) {
+//     famousPersonCard[i].addEventListener("click", function(event) {
+//         event.currentTarget.classList.add("dotted");
+//     })
+// }

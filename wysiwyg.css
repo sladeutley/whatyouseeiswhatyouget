@@ -1,0 +1,7 @@
+.famousPersonClass:nth-child(even) {
+    background-color: aquamarine;
+}
+
+.famousPersonClass:nth-child(odd) {
+    background-color: blueviolet;
+}
